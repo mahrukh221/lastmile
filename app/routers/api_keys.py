@@ -58,7 +58,7 @@ def revoke(
     db: Session = Depends(get_db),
 ):
     """Switch a key off. It stops working immediately."""
-    record = revoke_key(db, key_id)
+    record = revoke_key(db, key_id,admin)
     if record is None:
         raise HTTPException(404, "No such API key")
     return record

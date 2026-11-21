@@ -61,5 +61,5 @@ def keys_revoke(
     denied = _denied(user)
     if denied is not None:
         return denied
-    revoke_key(db, key_id)
+    revoke_key(db, key_id,user)
     return RedirectResponse("/admin/keys", status_code=303)

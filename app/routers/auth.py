@@ -3,6 +3,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app import audit
 from app.db import get_db
 from app.deps import get_current_user
 from app.models import User
@@ -33,6 +34,8 @@ def register(data: RegisterRequest, db: Session = Depends(get_db)):
         password_hash=hash_password(data.password),
     )
     db.add(user)
+    db.flush()  # gives the user an id, so the audit entry is saved in the same commit
+    audit.record(db, "auth.registered", actor=user, details={"email": email})
     db.commit()
     db.refresh(user)
     return user
@@ -43,9 +46,12 @@ def token(form: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get
     """Log in with email (in the username box) and password. Returns a JWT."""
     user = authenticate(db, form.username, form.password)
     if user is None:
+        audit.record(db, "auth.login_failed", actor_role=audit.ACTOR_ANONYMOUS,
+                     details={"email": form.username.lower().strip(), "via": "api"}, commit=True)
         raise HTTPException(
             401, "Wrong email or password", headers={"WWW-Authenticate": "Bearer"}
         )
+    audit.record(db, "auth.login", actor=user, details={"via": "api"}, commit=True)
     return TokenOut(access_token=create_access_token(user.id, user.role))
 
 

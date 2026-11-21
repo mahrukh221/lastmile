@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, Form, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.orm import Session
 
+from app import audit
 from app.config import settings
 from app.db import get_db
 from app.deps import get_optional_user
@@ -27,12 +28,15 @@ def login_submit(
 ):
     user = authenticate(db, email, password)
     if user is None:
+        audit.record(db, "auth.login_failed", actor_role=audit.ACTOR_ANONYMOUS,
+                     details={"email": email.lower().strip(), "via": "web"}, commit=True)
         return templates.TemplateResponse(
             request,
             "login.html",
             {"title": "Log in", "error": "Wrong email or password"},
             status_code=401,
         )
+    audit.record(db, "auth.login", actor=user, details={"via": "web"}, commit=True)
     response = RedirectResponse("/dashboard", status_code=303)
     response.set_cookie(
         "access_token",
@@ -45,7 +49,9 @@ def login_submit(
 
 
 @router.get("/logout")
-def logout():
+def logout(user: User | None = Depends(get_optional_user), db: Session = Depends(get_db)):
+    if user is not None:
+        audit.record(db, "auth.logout", actor=user, commit=True)
     response = RedirectResponse("/login", status_code=303)
     response.delete_cookie("access_token")
     return response

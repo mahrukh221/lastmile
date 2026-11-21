@@ -6,6 +6,7 @@ from fastapi.security import APIKeyHeader
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app import audit
 from app.db import get_db
 from app.models import ApiKey, User, utcnow
 
@@ -27,17 +28,22 @@ def create_key(db: Session, name: str, admin: User) -> tuple[ApiKey, str]:
         created_by=admin.id,
     )
     db.add(record)
+    db.flush()
+    audit.record(db, "apikey.created", actor=admin,
+                 details={"key_id": record.id, "name": record.name, "prefix": record.prefix})
     db.commit()
     db.refresh(record)
     return record, plaintext
 
 
-def revoke_key(db: Session, key_id: int) -> ApiKey | None:
+def revoke_key(db: Session, key_id: int, actor: User | None = None) -> ApiKey | None:
     record = db.get(ApiKey, key_id)
     if record is None:
         return None
     if record.revoked_at is None:
         record.revoked_at = utcnow()
+        audit.record(db, "apikey.revoked", actor=actor,
+                     details={"key_id": record.id, "name": record.name, "prefix": record.prefix})
         db.commit()
         db.refresh(record)
     return record
