@@ -1,3 +1,8 @@
 body { font-family: system-ui, sans-serif; margin: 0; font-size: 1.1rem; }
 main { max-width: 40rem; margin: 1rem auto; padding: 0 1rem; }
 .banner { background: #b45309; color: #fff; text-align: center; padding: .4rem; font-weight: 600; }
+label { display: block; margin: .8rem 0; }
+input { display: block; width: 100%; box-sizing: border-box; padding: .7rem; font-size: 1.1rem; margin-top: .3rem; }
+button { padding: .8rem 1.4rem; font-size: 1.1rem; cursor: pointer; }
+.error { color: #b91c1c; font-weight: 600; }
+details { margin-top: 1.5rem; }

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Log in</h1>
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  <form method="post" action="/login">
+    <label>Email
+      <input type="email" name="email" required autofocus>
+    </label>
+    <label>Password
+      <input type="password" name="password" required>
+    </label>
+    <button type="submit">Log in</button>
+  </form>
+  <details>
+    <summary>Demo accounts (prototype only)</summary>
+    <p>All use the password <code>demo12345</code>:</p>
+    <ul>
+      <li>citizen@example.com</li>
+      <li>helper@example.com</li>
+      <li>officer@example.com</li>
+      <li>admin@example.com</li>
+      <li>auditor@example.com</li>
+    </ul>
+  </details>
+{% endblock %}
