@@ -1,0 +1,303 @@
+{
+  "00000-0000001-1": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 12000,
+    "household_size": 5,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000002-2": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 45000,
+    "household_size": 6,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000003-3": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 25000,
+    "household_size": 4,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000004-4": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 9000,
+    "household_size": 4,
+    "already_paid": true,
+    "last_paid_on": "2026-10-15"
+  },
+  "00000-0000005-5": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 20000,
+    "household_size": 3,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000006-6": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 15000,
+    "household_size": 5,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000100-0": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 38000,
+    "household_size": 8,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000101-1": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 30000,
+    "household_size": 3,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000103-3": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 38000,
+    "household_size": 6,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000104-4": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 15000,
+    "household_size": 3,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000105-5": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 15000,
+    "household_size": 5,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000106-6": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 22000,
+    "household_size": 4,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000107-7": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 8000,
+    "household_size": 5,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000108-8": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 8000,
+    "household_size": 2,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000109-9": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 12000,
+    "household_size": 4,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000110-0": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 15000,
+    "household_size": 4,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000111-1": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 38000,
+    "household_size": 4,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000112-2": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 38000,
+    "household_size": 6,
+    "already_paid": true,
+    "last_paid_on": null
+  },
+  "00000-0000113-3": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 15000,
+    "household_size": 7,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000114-4": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 15000,
+    "household_size": 2,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000115-5": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 12000,
+    "household_size": 4,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000116-6": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 15000,
+    "household_size": 3,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000117-7": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 30000,
+    "household_size": 5,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000118-8": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 8000,
+    "household_size": 2,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000119-9": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 8000,
+    "household_size": 2,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000120-0": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 15000,
+    "household_size": 3,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000121-1": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 22000,
+    "household_size": 6,
+    "already_paid": true,
+    "last_paid_on": null
+  },
+  "00000-0000123-3": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 12000,
+    "household_size": 6,
+    "already_paid": true,
+    "last_paid_on": null
+  },
+  "00000-0000124-4": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 30000,
+    "household_size": 3,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000126-6": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 55000,
+    "household_size": 8,
+    "already_paid": true,
+    "last_paid_on": null
+  },
+  "00000-0000127-7": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 38000,
+    "household_size": 3,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000128-8": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 30000,
+    "household_size": 8,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000129-9": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 12000,
+    "household_size": 3,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000130-0": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 55000,
+    "household_size": 3,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000132-2": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 15000,
+    "household_size": 8,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000133-3": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 55000,
+    "household_size": 7,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000134-4": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 55000,
+    "household_size": 7,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000135-5": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 55000,
+    "household_size": 5,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000200-0": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 22000,
+    "household_size": 4,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000201-1": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 12000,
+    "household_size": 3,
+    "already_paid": true,
+    "last_paid_on": null
+  },
+  "00000-0000202-2": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 15000,
+    "household_size": 4,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000203-3": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 15000,
+    "household_size": 4,
+    "already_paid": false,
+    "last_paid_on": null
+  },
+  "00000-0000204-4": {
+    "programme": "Relief Programme 2026 (mock)",
+    "monthly_income": 55000,
+    "household_size": 6,
+    "already_paid": false,
+    "last_paid_on": null
+  }
+}

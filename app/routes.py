@@ -1,47 +1,80 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, HTTPException, Path, Query
 from pydantic import BaseModel, Field
 
-from app.mock import services as s
+from app.mock_services import store
 
-router = APIRouter(prefix="/mock", tags=["mock services (simulated)"])
+router = APIRouter(prefix="/mock", tags=["Mock services (simulated, fake data)"])
 
-
-class DisburseIn(BaseModel):
-    cnic: str
-    amount: int = Field(gt=0)
-    idempotency_key: str = Field(min_length=8)
+CNIC_PATTERN = r"^\d{5}-\d{7}-\d$"
 
 
-@router.get("/identity/verify")
-def verify(cnic: str):
-    return {"notice": s.MOCK_NOTICE, **s.identity_verify(cnic)}
-
-
+# ---------------- Identity service (pretends to be NADRA) ----------------
 @router.get("/identity/search")
-def search(name: str = Query(min_length=2)):
-    return {"notice": s.MOCK_NOTICE, "results": s.identity_search(name)}
+def identity_search(
+    q: str = Query(..., min_length=2, description="Part of a name"),
+    limit: int = Query(10, ge=1, le=50),
+):
+    """Find people whose name contains every word in q (case-insensitive)."""
+    words = q.lower().split()
+    matches = []
+    for record in store.identity_by_cnic().values():
+        name = " ".join(record["full_name"].lower().split())
+        if all(word in name for word in words):
+            matches.append(store.public(record))
+        if len(matches) >= limit:
+            break
+    return matches
 
 
-@router.get("/identity/death-record")
-def death(cnic: str):
-    return {"notice": s.MOCK_NOTICE, **s.death_record(cnic)}
+@router.get("/identity/{cnic}")
+def identity_lookup(cnic: str = Path(..., pattern=CNIC_PATTERN)):
+    record = store.identity_by_cnic().get(cnic)
+    if record is None:
+        raise HTTPException(404, "No identity record for this CNIC (mock)")
+    return store.public(record)
 
 
-@router.get("/data/people")
-def people(offset: int = 0, limit: int = Query(20, le=100)):
-    return {"notice": s.MOCK_NOTICE, **s.list_people(offset, limit)}
+# ---------------- Payment service (pretends to be Raast) ----------------
+@router.get("/payment/account/{cnic}")
+def payment_account(cnic: str = Path(..., pattern=CNIC_PATTERN)):
+    account = store.accounts_by_cnic().get(cnic)
+    if account is None:
+        raise HTTPException(404, "No payment account for this CNIC (mock)")
+    return account
 
 
-@router.get("/data/eligibility")
-def eligibility(cnic: str):
-    return {"notice": s.MOCK_NOTICE, **s.eligibility_facts(cnic)}
+class TransferRequest(BaseModel):
+    cnic: str = Field(..., pattern=CNIC_PATTERN)
+    amount: int = Field(..., gt=0, le=1_000_000)
+    idempotency_key: str = Field(..., min_length=8)
 
 
-@router.post("/payment/disburse")
-def disburse(body: DisburseIn):
-    return {"notice": s.MOCK_NOTICE, **s.payment_disburse(body.cnic, body.amount, body.idempotency_key)}
+_transfers: dict[str, dict] = {}  # lives in memory, resets when the server restarts
 
 
-@router.get("/payment/{reference}")
-def pay_status(reference: str):
-    return {"notice": s.MOCK_NOTICE, **s.payment_status(reference)}
+@router.post("/payment/simulate-transfer")
+def simulate_transfer(req: TransferRequest):
+    """Pretend to send money. No real money moves. Safe to retry with the same key."""
+    if req.idempotency_key in _transfers:
+        return {**_transfers[req.idempotency_key], "replayed": True}
+    account = store.accounts_by_cnic().get(req.cnic)
+    if account is None or account["status"] != "active":
+        raise HTTPException(422, "No active payment account (mock)")
+    result = {
+        "transfer_id": f"MOCK-{len(_transfers) + 1:06d}",
+        "cnic": req.cnic,
+        "amount": req.amount,
+        "status": "simulated_success",
+        "note": "Simulated. No real money moved.",
+    }
+    _transfers[req.idempotency_key] = result
+    return {**result, "replayed": False}
+
+
+# ---------------- Data service (relief programme records) ----------------
+@router.get("/data/programme/{cnic}")
+def programme_record(cnic: str = Path(..., pattern=CNIC_PATTERN)):
+    record = store.programme_by_cnic().get(cnic)
+    if record is None:
+        raise HTTPException(404, "No programme record for this CNIC (mock)")
+    return record
