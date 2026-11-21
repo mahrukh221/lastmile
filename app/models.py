@@ -46,3 +46,16 @@ class AuditLog(Base):
     action: Mapped[str] = mapped_column(String(100), index=True)
     case_id: Mapped[int | None] = mapped_column(ForeignKey("cases.id"))
     details: Mapped[dict] = mapped_column(JSON, default=dict)
+    
+
+class ApiKey(Base):
+    __tablename__ = "api_keys"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(100))
+    prefix: Mapped[str] = mapped_column(String(12))  # first characters, only to tell keys apart
+    key_hash: Mapped[str] = mapped_column(String(64), unique=True, index=True)  # SHA-256 of the key
+    created_by: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    last_used_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    revoked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))

@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.config import settings
 from app.mock_services.routes import router as mock_router
-from app.routers import auth, demo, pages
+from app.routers import admin, api_keys, auth, demo, pages, public_api
 from app.templating import BASE_DIR, templates
 
 app = FastAPI(
@@ -18,6 +18,9 @@ app.include_router(mock_router)
 app.include_router(auth.router)
 app.include_router(pages.router)
 app.include_router(demo.router)
+app.include_router(api_keys.router)
+app.include_router(admin.router)
+app.include_router(public_api.router)
 
 
 @app.get("/health")

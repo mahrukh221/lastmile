@@ -6,3 +6,7 @@ input { display: block; width: 100%; box-sizing: border-box; padding: .7rem; fon
 button { padding: .8rem 1.4rem; font-size: 1.1rem; cursor: pointer; }
 .error { color: #b91c1c; font-weight: 600; }
 details { margin-top: 1.5rem; }
+table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+th, td { text-align: left; padding: .5rem; border-bottom: 1px solid #ddd; vertical-align: middle; }
+.notice { background: #fef3c7; border: 2px solid #b45309; padding: 1rem; margin: 1rem 0; }
+.key { display: block; word-break: break-all; font-size: 1.05rem; padding: .5rem; background: #fff; }

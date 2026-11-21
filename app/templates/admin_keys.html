@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>API keys</h1>
+  <p><a href="/dashboard">Back to dashboard</a></p>
+
+  {% if new_key %}
+    <div class="notice">
+      <p><strong>Copy this key now. It will never be shown again.</strong></p>
+      <code class="key">{{ new_key }}</code>
+    </div>
+  {% endif %}
+
+  <form method="post" action="/admin/keys">
+    <label>Name for the new key (for example: Health Dept system)
+      <input name="name" required minlength="3" maxlength="100">
+    </label>
+    <button type="submit">Create key</button>
+  </form>
+
+  <h2>Existing keys</h2>
+  <table>
+    <tr><th>Name</th><th>Starts with</th><th>Status</th><th>Last used</th><th></th></tr>
+    {% for k in keys %}
+    <tr>
+      <td>{{ k.name }}</td>
+      <td><code>{{ k.prefix }}...</code></td>
+      <td>{{ "revoked" if k.revoked_at else "active" }}</td>
+      <td>{{ k.last_used_at.strftime("%Y-%m-%d %H:%M") if k.last_used_at else "never" }}</td>
+      <td>
+        {% if not k.revoked_at %}
+        <form method="post" action="/admin/keys/{{ k.id }}/revoke">
+          <button type="submit">Revoke</button>
+        </form>
+        {% endif %}
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="5">No keys yet.</td></tr>
+    {% endfor %}
+  </table>
+{% endblock %}
