@@ -14,7 +14,6 @@ app = FastAPI(
     description="Helps people use public services safely. All data is mock.",
     version="0.1.0",
 )
-
 app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 templates = Jinja2Templates(directory=BASE_DIR / "templates")
 
